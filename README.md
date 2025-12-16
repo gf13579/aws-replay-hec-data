@@ -1,5 +1,9 @@
 # Replay Splunk Events in S3 to HEC using AWS Lambda
 
+Replay data from HEC-formatted JSON in S3 to Splunk.
+
+![Screenshot](./screenie.png)
+
 ## Overview
 
 This project provides a Lambda-ready Python script to replay event data written to Amazon S3 by Splunk Edge/Ingest Processor into a target Splunk index via HTTP Event Collector (HEC).  This can be useful for scenarios such as compliance investigations or statistical analysis of historical event data.
