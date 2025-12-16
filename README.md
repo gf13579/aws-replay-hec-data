@@ -1,10 +1,12 @@
-# Splunk S3 Event Replay Lambda
+# Replay Splunk Events in S3 to HEC using AWS Lambda
 
 ## Overview
 
 This project provides a Lambda-ready Python script to replay event data written to Amazon S3 by Splunk Edge/Ingest Processor into a target Splunk index via HTTP Event Collector (HEC).  This can be useful for scenarios such as compliance investigations or statistical analysis of historical event data.
 
-The script reads newline-delimited JSON, gzipped, from S3, using a partitioned folder structure:
+The script is intended for one-shot usage rather than being used with SQS, EventBridge etc. - it makes no attempt to retain state.
+
+The script reads newline-delimited JSON (ndjson, aka jsonl), gzipped, from S3, using a partitioned folder structure:
 
 ```none
 <some_prefix>/year=yyyy/month=mm/day=dd/instanceId=<some_guid>/
@@ -137,7 +139,7 @@ Replace `<your-bucket-name>` with your actual bucket (e.g., `gf-vz-dmx-poc-01`).
 ---
 ## Future improvements
 
-Batching events into larger payloads for the POST to HEC - rather than one event per POST - will greatly increase performance and should be fairly easy to implement
+Batching events into larger payloads for the POST to HEC - rather than one event per POST - will greatly increase performance and should be fairly easy to implement.
 
 ---
 ## Support
